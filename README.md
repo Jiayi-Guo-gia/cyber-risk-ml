@@ -1,7 +1,7 @@
 # Cyber Claim Prediction: Multi-label Classification and Multi-output Regression
 
 Code for **"Entity-Specific Cyber Risk Assessment Using Insurtech-Empowered Risk Factors"**
-Jiayi Guo, Linfeng Zhang, Zhiyu Quan. *Risk Management*, Vol. 19, 2026. <https://doi.org/10.66573/001c.155715>
+Jiayi Guo, Linfeng Zhang, Zhiyu Quan. *Variance*, Vol. 19, 2026. <https://doi.org/10.66573/001c.155715>
 
 We predict, for each firm-year, which of five cyber-incident categories lead to insurance claims
 (`Data Breach`, `Privacy Violation`, `Extortion/Fraud`, `IT Error`, `Other`) and how many claims occur,
