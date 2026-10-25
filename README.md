@@ -101,26 +101,7 @@ TreeSHAP; models are named `LGBM_MOC`, `RF_CC`, `MLRF`, `LGBM_MOR`, `RF_RC`, `MO
 │   │   │   ├── RF_CC_best_model_params.json
 │   │   │   └── RF_CC_best_thresholds.json
 │   │   ├── feature/  # top-20 feature-importance tables (CSV) and plots (PNG)
-│   │   │   ├── LGBM_CC_permutation_importance.csv
-│   │   │   ├── LGBM_CC_shap_importance.csv
-│   │   │   ├── LGBM_CC_top20_features_gain.csv
-│   │   │   ├── LGBM_CC_top20_features_split.csv
-│   │   │   ├── LGBM_MOC_permutation_importance.csv
-│   │   │   ├── LGBM_MOC_shap_importance.csv
-│   │   │   ├── LGBM_MOC_top20_features_gain.csv
-│   │   │   ├── LGBM_MOC_top20_features_split.csv
-│   │   │   ├── MLRF_top20_features_entropy.csv
-│   │   │   ├── MLRF_top20_features_gini.csv
-│   │   │   ├── MLRF_top20_permutation_importance.csv
-│   │   │   ├── MLRF_top20_shap_importance.csv
-│   │   │   ├── RF_CC_permutation_importance.csv
-│   │   │   ├── RF_CC_shap_importance.csv
-│   │   │   ├── RF_CC_top20_features_entropy.csv
-│   │   │   ├── RF_CC_top20_features_gini.csv
-│   │   │   ├── RF_MOC_permutation_importance.csv
-│   │   │   ├── RF_MOC_shap_importance.csv
-│   │   │   ├── RF_MOC_top20_features_entropy.csv
-│   │   │   ├── RF_MOC_top20_features_gini.csv
+│   │   │   ├── *.csv  # 20 tables
 │   │   │   └── *.png  # 29 figures
 │   │   ├── figures/  # performance heatmaps
 │   │   │   └── *.png  # 2 figures
@@ -184,24 +165,9 @@ TreeSHAP; models are named `LGBM_MOC`, `RF_CC`, `MLRF`, `LGBM_MOR`, `RF_RC`, `MO
 │   ├── results/  # tuned hyper-parameters and aggregate results
 │   │   ├── feature/  # top-20 feature-importance tables (CSV) and plots (PNG)
 │   │   │   ├── gain/  # LightGBM gain importance
-│   │   │   │   ├── LGBM_MOR_top20_features_gain.csv
-│   │   │   │   ├── LGBM_RC_top20_features_gain.csv
+│   │   │   │   ├── *.csv  # 2 tables
 │   │   │   │   └── *.png  # 2 figures
-│   │   │   ├── LGBM_MOR_top20_features_gain.csv
-│   │   │   ├── LGBM_MOR_top20_features_permutation.csv
-│   │   │   ├── LGBM_MOR_top20_features_shap.csv
-│   │   │   ├── LGBM_RC_top20_features_gain.csv
-│   │   │   ├── LGBM_RC_top20_features_permutation.csv
-│   │   │   ├── LGBM_RC_top20_features_shap.csv
-│   │   │   ├── MORF_top20_features_impurity.csv
-│   │   │   ├── MORF_top20_features_permutation.csv
-│   │   │   ├── MORF_top20_features_shap.csv
-│   │   │   ├── RF_MOR_top20_features_impurity.csv
-│   │   │   ├── RF_MOR_top20_features_permutation.csv
-│   │   │   ├── RF_MOR_top20_features_shap.csv
-│   │   │   ├── RF_RC_top20_features_impurity.csv
-│   │   │   ├── RF_RC_top20_features_permutation.csv
-│   │   │   ├── RF_RC_top20_features_shap.csv
+│   │   │   ├── *.csv  # 15 tables
 │   │   │   └── *.png  # 24 figures
 │   │   ├── MOR/  # Multi-output Regressor: hyper-parameters (JSON)
 │   │   │   ├── LGBM_MOR_best_params.json
