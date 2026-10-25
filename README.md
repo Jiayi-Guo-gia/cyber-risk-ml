@@ -59,24 +59,227 @@ TreeSHAP; models are named `LGBM_MOC`, `RF_CC`, `MLRF`, `LGBM_MOR`, `RF_RC`, `MO
 
 ```
 .
-├── preprocessing/
-│   ├── raw_cleaning/               # raw JSON -> CSV, cleaning and flattening of the entity-level records
-│   ├── data_processing.py          # dedup, one-hot incident types, aggregate per firm-year, join with features
-│   ├── split_classification.py     # binary occurrence targets, 80/20 split (seed 42)
-│   └── split_regression.py         # incident-count targets, 80/20 split (seed 42)
-├── classification/
-│   ├── tuning/                     # Optuna search (hyper-parameters, thresholds, label order) + SLURM scripts
-│   ├── baselines/                  # untuned reference models
-│   ├── feature_importance/         # one script per (method, learner, importance technique)
-│   ├── notebooks/                  # model performance, importance heatmaps, residual analysis
-│   ├── results/
-│   │   ├── CC/, MOC/               # tuned hyper-parameters, chain orders, thresholds (JSON)
-│   │   ├── feature/                # top-20 importance tables (CSV) and plots (PNG)
-│   │   └── figures/                # performance heatmaps
-│   └── data/                       # <- place data here (git-ignored)
-└── regression/                     # same layout as classification/
-    ├── baselines/                  # RF, kernel ridge, SVR and multi-output SVR reference models
-    └── notebooks/rf_hyperparameter_tuning.ipynb
+├── classification/  # multi-label classification (incident occurrence)
+│   ├── baselines/  # untuned reference models
+│   │   ├── CC_lgbm_original.py
+│   │   ├── CC_rf_original.py
+│   │   └── MOC_original.py
+│   ├── data/  # place data here (contents git-ignored)
+│   │   └── README.md
+│   ├── feature_importance/  # one script per (method, learner, importance technique)
+│   │   ├── CC_LGBM_feature_gain.py
+│   │   ├── CC_LGBM_feature_split.py
+│   │   ├── CC_LGBM_permutation.py
+│   │   ├── CC_LGBM_shap.py
+│   │   ├── CC_RF_feature_entropy.py
+│   │   ├── CC_RF_feature_gini.py
+│   │   ├── CC_RF_permutation.py
+│   │   ├── CC_RF_shap.py
+│   │   ├── MLRF.py
+│   │   ├── MLRF_feature_entropy.py
+│   │   ├── MLRF_feature_gini.py
+│   │   ├── MLRF_permutation.py
+│   │   ├── MLRF_shap.py
+│   │   ├── MOC_LGBM_feature_gain.py
+│   │   ├── MOC_LGBM_feature_split.py
+│   │   ├── MOC_LGBM_permutation.py
+│   │   ├── MOC_LGBM_shap.py
+│   │   ├── MOC_RF_feature_entropy.py
+│   │   ├── MOC_RF_feature_gini.py
+│   │   ├── MOC_RF_permutation.py
+│   │   └── MOC_RF_shap.py
+│   ├── notebooks/  # model performance, importance heatmaps, residual analysis
+│   │   ├── feature_importance_heatmaps.ipynb
+│   │   ├── model_performance.ipynb
+│   │   └── residual_analysis.ipynb
+│   ├── results/  # tuned hyper-parameters and aggregate results
+│   │   ├── CC/  # Classifier Chain: hyper-parameters, label order, thresholds (JSON)
+│   │   │   ├── LGBM_CC_best_chain_order.json
+│   │   │   ├── LGBM_CC_best_model_params.json
+│   │   │   ├── LGBM_CC_best_thresholds.json
+│   │   │   ├── RF_CC_best_chain_order.json
+│   │   │   ├── RF_CC_best_model_params.json
+│   │   │   └── RF_CC_best_thresholds.json
+│   │   ├── feature/  # top-20 feature-importance tables (CSV) and plots (PNG)
+│   │   │   ├── classification_heatmap.png
+│   │   │   ├── feature_group_occurrence_heatmap.png
+│   │   │   ├── feature_importance_heatmap_all_models_classification.png
+│   │   │   ├── feature_importance_heatmap_log_color_raw_text.png
+│   │   │   ├── feature_importance_heatmap_log_transformed_classification.png
+│   │   │   ├── feature_importance_heatmap_row_weighted_classfication.png
+│   │   │   ├── feature_occurrence_barplot_gradient.png
+│   │   │   ├── LGBM_CC_feature_importance_plot_gain.png
+│   │   │   ├── LGBM_CC_feature_importance_plot_split.png
+│   │   │   ├── LGBM_CC_permutation_importance.csv
+│   │   │   ├── LGBM_CC_permutation_plot.png
+│   │   │   ├── LGBM_CC_shap_importance.csv
+│   │   │   ├── LGBM_CC_shap_plot.png
+│   │   │   ├── LGBM_CC_top20_features_gain.csv
+│   │   │   ├── LGBM_CC_top20_features_split.csv
+│   │   │   ├── LGBM_MOC_feature_importance_plot_gain.png
+│   │   │   ├── LGBM_MOC_feature_importance_plot_split.png
+│   │   │   ├── LGBM_MOC_permutation_importance.csv
+│   │   │   ├── LGBM_MOC_permutation_plot.png
+│   │   │   ├── LGBM_MOC_shap_importance.csv
+│   │   │   ├── LGBM_MOC_shap_plot.png
+│   │   │   ├── LGBM_MOC_top20_features_gain.csv
+│   │   │   ├── LGBM_MOC_top20_features_split.csv
+│   │   │   ├── MLRF_feature_importance_plot_entropy.png
+│   │   │   ├── MLRF_top20_feature_importance_plot_gini.png
+│   │   │   ├── MLRF_top20_features_entropy.csv
+│   │   │   ├── MLRF_top20_features_gini.csv
+│   │   │   ├── MLRF_top20_permutation_importance.csv
+│   │   │   ├── MLRF_top20_permutation_plot.png
+│   │   │   ├── MLRF_top20_shap_importance.csv
+│   │   │   ├── MLRF_top20_shap_plot.png
+│   │   │   ├── model_perfomance_classification.png
+│   │   │   ├── RF_CC_feature_importance_plot_entropy.png
+│   │   │   ├── RF_CC_feature_importance_plot_gini.png
+│   │   │   ├── RF_CC_permutation_importance.csv
+│   │   │   ├── RF_CC_permutation_plot.png
+│   │   │   ├── RF_CC_shap_importance.csv
+│   │   │   ├── RF_CC_shap_plot.png
+│   │   │   ├── RF_CC_top20_features_entropy.csv
+│   │   │   ├── RF_CC_top20_features_gini.csv
+│   │   │   ├── RF_MOC_feature_importance_plot_entropy.png
+│   │   │   ├── RF_MOC_feature_importance_plot_gini.png
+│   │   │   ├── RF_MOC_permutation_importance.csv
+│   │   │   ├── RF_MOC_permutation_plot.png
+│   │   │   ├── RF_MOC_shap_importance.csv
+│   │   │   ├── RF_MOC_shap_plot.png
+│   │   │   ├── RF_MOC_top20_features_entropy.csv
+│   │   │   ├── RF_MOC_top20_features_gini.csv
+│   │   │   └── train_test_classification_heatmap.png
+│   │   ├── figures/  # performance heatmaps
+│   │   │   ├── performance_heatmap.png
+│   │   │   └── train_test_heatmap.png
+│   │   └── MOC/  # Binary Relevance: hyper-parameters, thresholds (JSON)
+│   │       ├── LGBM_MOC_best_model_params.json
+│   │       ├── LGBM_MOC_best_thresholds.json
+│   │       ├── RF_best_model_params.json
+│   │       ├── RF_best_thresholds.json
+│   │       ├── RF_MOC_best_model_params.json
+│   │       └── RF_MOC_best_thresholds.json
+│   └── tuning/  # Optuna search (hyper-parameters, thresholds, label order) + SLURM scripts
+│       ├── CC_LGBM_ORDER.py
+│       ├── CC_RF_ORDER.py
+│       ├── MLRF_TUNE.py
+│       ├── MOC_LGBM_TUNE.py
+│       ├── MOC_RF_TUNE.py
+│       ├── run_CC_LGBM_ORDER.sh
+│       ├── run_CC_RF_ORDER.sh
+│       ├── run_MLRF_TUNE.sh
+│       ├── run_MOC_LGBM_TUNE.sh
+│       └── run_MOC_RF_TUNE.sh
+├── preprocessing/  # data preparation
+│   ├── raw_cleaning/  # raw JSON -> CSV, cleaning and flattening of the entity-level records
+│   │   ├── data_clean_cyber.py
+│   │   ├── data_flatten_cyber.py
+│   │   └── data_loader.py
+│   ├── data_processing.py
+│   ├── split_classification.py
+│   └── split_regression.py
+├── regression/  # multi-output regression (incident frequency)
+│   ├── baselines/  # untuned reference models (RF, kernel ridge, SVR, multi-output SVR)
+│   │   ├── MOR_KRR_original.py
+│   │   ├── MOR_SVR_original.py
+│   │   ├── MORF_original.py
+│   │   └── MSVR_original.py
+│   ├── data/  # place data here (contents git-ignored)
+│   │   └── README.md
+│   ├── feature_importance/  # one script per (method, learner, importance technique)
+│   │   ├── MOR_LGBM_feature_gain.py
+│   │   ├── MOR_LGBM_feature_split.py
+│   │   ├── MOR_LGBM_permutation.py
+│   │   ├── MOR_LGBM_shap.py
+│   │   ├── MOR_RF_feature_impurity.py
+│   │   ├── MOR_RF_permutation.py
+│   │   ├── MOR_RF_shap.py
+│   │   ├── MORF_feature_impurity.py
+│   │   ├── MORF_permutation.py
+│   │   ├── MORF_shap.py
+│   │   ├── RC_LGBM_feature_gain.py
+│   │   ├── RC_LGBM_feature_split.py
+│   │   ├── RC_LGBM_permutation.py
+│   │   ├── RC_LGBM_shap.py
+│   │   ├── RC_RF_feature_impurity.py
+│   │   ├── RC_RF_permutation.py
+│   │   └── RC_RF_shap.py
+│   ├── notebooks/  # model performance, importance heatmaps, residual analysis, RF tuning
+│   │   ├── feature_importance_heatmaps.ipynb
+│   │   ├── model_performance.ipynb
+│   │   ├── residual_analysis.ipynb
+│   │   └── rf_hyperparameter_tuning.ipynb
+│   ├── results/  # tuned hyper-parameters and aggregate results
+│   │   ├── feature/  # top-20 feature-importance tables (CSV) and plots (PNG)
+│   │   │   ├── gain/  # LightGBM gain importance (CSV, PNG)
+│   │   │   │   ├── LGBM_MOR_feature_importance_plot_gain.png
+│   │   │   │   ├── LGBM_MOR_top20_features_gain.csv
+│   │   │   │   ├── LGBM_RC_feature_importance_plot_gain.png
+│   │   │   │   └── LGBM_RC_top20_features_gain.csv
+│   │   │   ├── feature_group_occurrence_heatmap.png
+│   │   │   ├── feature_importance_heatmap_all_models_regression.png
+│   │   │   ├── feature_importance_heatmap_log_transformed_regression.png
+│   │   │   ├── feature_importance_heatmap_row_weighted_regression.png
+│   │   │   ├── feature_occurrence_barplot_gradient.png
+│   │   │   ├── LGBM_MOR_feature_importance_plot_gain.png
+│   │   │   ├── LGBM_MOR_feature_importance_plot_permutation.png
+│   │   │   ├── LGBM_MOR_feature_importance_plot_shap.png
+│   │   │   ├── LGBM_MOR_top20_features_gain.csv
+│   │   │   ├── LGBM_MOR_top20_features_permutation.csv
+│   │   │   ├── LGBM_MOR_top20_features_shap.csv
+│   │   │   ├── LGBM_RC_feature_importance_plot_gain.png
+│   │   │   ├── LGBM_RC_feature_importance_plot_permutation.png
+│   │   │   ├── LGBM_RC_feature_importance_plot_shap.png
+│   │   │   ├── LGBM_RC_feature_importance_plot_split.png
+│   │   │   ├── LGBM_RC_top20_features_gain.csv
+│   │   │   ├── LGBM_RC_top20_features_permutation.csv
+│   │   │   ├── LGBM_RC_top20_features_shap.csv
+│   │   │   ├── model_perfomance_classification.png
+│   │   │   ├── MORF_feature_importance_plot_impurity.png
+│   │   │   ├── MORF_feature_importance_plot_permutation.png
+│   │   │   ├── MORF_top20_feature_importance_plot_shap.png
+│   │   │   ├── MORF_top20_features_impurity.csv
+│   │   │   ├── MORF_top20_features_permutation.csv
+│   │   │   ├── MORF_top20_features_shap.csv
+│   │   │   ├── regression_heatmap.png
+│   │   │   ├── RF_MOR_feature_importance_plot_impurity.png
+│   │   │   ├── RF_MOR_feature_importance_plot_permutation.png
+│   │   │   ├── RF_MOR_feature_importance_plot_shap.png
+│   │   │   ├── RF_MOR_top20_features_impurity.csv
+│   │   │   ├── RF_MOR_top20_features_permutation.csv
+│   │   │   ├── RF_MOR_top20_features_shap.csv
+│   │   │   ├── RF_RC_feature_importance_plot_impurity.png
+│   │   │   ├── RF_RC_feature_importance_plot_permutation.png
+│   │   │   ├── RF_RC_feature_importance_plot_shap.png
+│   │   │   ├── RF_RC_top20_features_impurity.csv
+│   │   │   ├── RF_RC_top20_features_permutation.csv
+│   │   │   ├── RF_RC_top20_features_shap.csv
+│   │   │   └── train_test_regression_heatmap.png
+│   │   ├── MOR/  # Multi-output Regressor: hyper-parameters (JSON)
+│   │   │   ├── LGBM_MOR_best_params.json
+│   │   │   ├── RF_best_params.json
+│   │   │   └── RF_MOR_best_params.json
+│   │   └── RC/  # Regressor Chain: hyper-parameters, chain order (JSON)
+│   │       ├── LGBM_RC_best_chain_order.json
+│   │       ├── LGBM_RC_best_params.json
+│   │       ├── RF_RC_best_chain_order.json
+│   │       └── RF_RC_best_params.json
+│   └── tuning/  # Optuna search (hyper-parameters, chain order) + SLURM scripts
+│       ├── MOR_LGBM_optimized.py
+│       ├── MOR_RF_optimized.py
+│       ├── MORF_optimized.py
+│       ├── RC_LGBM_ORDER.py
+│       ├── RC_RF_ORDER.py
+│       ├── run_MOR_LGBM_TUNE.sh
+│       ├── run_MOR_RF_TUNE.sh
+│       ├── run_RC_LGBM_ORDER.sh
+│       ├── run_RC_RF_ORDER.sh
+│       └── run_RF_TUNE.sh
+├── CITATION.cff
+├── LICENSE
+├── README.md
+└── requirements.txt
 ```
 
 ## Setup
