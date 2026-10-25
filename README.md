@@ -56,13 +56,32 @@ TreeSHAP; models are named `LGBM_MOC`, `RF_CC`, `MLRF`, `LGBM_MOR`, `RF_RC`, `MO
 
 ```
 .
+├── preprocessing/  # data preparation
+│   ├── raw_cleaning/  # raw JSON -> CSV, cleaning and flattening of the entity-level records
+│   │   ├── data_clean_cyber.py
+│   │   ├── data_flatten_cyber.py
+│   │   └── data_loader.py
+│   ├── data_processing.py
+│   ├── split_classification.py
+│   └── split_regression.py
 ├── classification/  # multi-label classification (incident occurrence)
+│   ├── data/  # place data here (contents git-ignored)
+│   │   └── README.md
 │   ├── baselines/  # untuned reference models
 │   │   ├── CC_lgbm_original.py
 │   │   ├── CC_rf_original.py
 │   │   └── MOC_original.py
-│   ├── data/  # place data here (contents git-ignored)
-│   │   └── README.md
+│   ├── tuning/  # Optuna search (hyper-parameters, thresholds, label order) + SLURM scripts
+│   │   ├── CC_LGBM_ORDER.py
+│   │   ├── CC_RF_ORDER.py
+│   │   ├── MLRF_TUNE.py
+│   │   ├── MOC_LGBM_TUNE.py
+│   │   ├── MOC_RF_TUNE.py
+│   │   ├── run_CC_LGBM_ORDER.sh
+│   │   ├── run_CC_RF_ORDER.sh
+│   │   ├── run_MLRF_TUNE.sh
+│   │   ├── run_MOC_LGBM_TUNE.sh
+│   │   └── run_MOC_RF_TUNE.sh
 │   ├── feature_importance/  # one script per (method, learner, importance technique)
 │   │   ├── CC_LGBM_feature_gain.py
 │   │   ├── CC_LGBM_feature_split.py
@@ -87,56 +106,48 @@ TreeSHAP; models are named `LGBM_MOC`, `RF_CC`, `MLRF`, `LGBM_MOR`, `RF_RC`, `MO
 │   ├── notebooks/  # model performance and feature-importance heatmaps
 │   │   ├── feature_importance_heatmaps.ipynb
 │   │   └── model_performance.ipynb
-│   ├── results/  # tuned hyper-parameters and aggregate results
-│   │   ├── CC/  # Classifier Chain: hyper-parameters, label order, thresholds (JSON)
-│   │   │   ├── LGBM_CC_best_chain_order.json
-│   │   │   ├── LGBM_CC_best_model_params.json
-│   │   │   ├── LGBM_CC_best_thresholds.json
-│   │   │   ├── RF_CC_best_chain_order.json
-│   │   │   ├── RF_CC_best_model_params.json
-│   │   │   └── RF_CC_best_thresholds.json
-│   │   ├── feature/  # feature-importance results
-│   │   │   ├── per_model/  # one table (all features) and one top-20 plot per model and technique
-│   │   │   │   ├── *.csv  # 20 tables
-│   │   │   │   └── *.png  # 20 figures
-│   │   │   └── summary/  # summary heatmaps across models
-│   │   │       └── *.png  # 6 figures
-│   │   ├── figures/  # model performance heatmaps
-│   │   │   └── *.png  # 5 figures
-│   │   └── MOC/  # Binary Relevance: hyper-parameters, thresholds (JSON)
-│   │       ├── LGBM_MOC_best_model_params.json
-│   │       ├── LGBM_MOC_best_thresholds.json
-│   │       ├── RF_best_model_params.json
-│   │       ├── RF_best_thresholds.json
-│   │       ├── RF_MOC_best_model_params.json
-│   │       └── RF_MOC_best_thresholds.json
-│   └── tuning/  # Optuna search (hyper-parameters, thresholds, label order) + SLURM scripts
-│       ├── CC_LGBM_ORDER.py
-│       ├── CC_RF_ORDER.py
-│       ├── MLRF_TUNE.py
-│       ├── MOC_LGBM_TUNE.py
-│       ├── MOC_RF_TUNE.py
-│       ├── run_CC_LGBM_ORDER.sh
-│       ├── run_CC_RF_ORDER.sh
-│       ├── run_MLRF_TUNE.sh
-│       ├── run_MOC_LGBM_TUNE.sh
-│       └── run_MOC_RF_TUNE.sh
-├── preprocessing/  # data preparation
-│   ├── raw_cleaning/  # raw JSON -> CSV, cleaning and flattening of the entity-level records
-│   │   ├── data_clean_cyber.py
-│   │   ├── data_flatten_cyber.py
-│   │   └── data_loader.py
-│   ├── data_processing.py
-│   ├── split_classification.py
-│   └── split_regression.py
+│   └── results/  # tuned hyper-parameters and aggregate results
+│       ├── CC/  # Classifier Chain: hyper-parameters, label order, thresholds (JSON)
+│       │   ├── LGBM_CC_best_chain_order.json
+│       │   ├── LGBM_CC_best_model_params.json
+│       │   ├── LGBM_CC_best_thresholds.json
+│       │   ├── RF_CC_best_chain_order.json
+│       │   ├── RF_CC_best_model_params.json
+│       │   └── RF_CC_best_thresholds.json
+│       ├── MOC/  # Binary Relevance: hyper-parameters, thresholds (JSON)
+│       │   ├── LGBM_MOC_best_model_params.json
+│       │   ├── LGBM_MOC_best_thresholds.json
+│       │   ├── RF_best_model_params.json
+│       │   ├── RF_best_thresholds.json
+│       │   ├── RF_MOC_best_model_params.json
+│       │   └── RF_MOC_best_thresholds.json
+│       ├── feature/  # feature-importance results
+│       │   ├── per_model/  # one table (all features) and one top-20 plot per model and technique
+│       │   │   ├── *.csv  # 20 tables
+│       │   │   └── *.png  # 20 figures
+│       │   └── summary/  # summary heatmaps across models
+│       │       └── *.png  # 6 figures
+│       └── figures/  # model performance heatmaps
+│           └── *.png  # 5 figures
 ├── regression/  # multi-output regression (incident frequency)
+│   ├── data/  # place data here (contents git-ignored)
+│   │   └── README.md
 │   ├── baselines/  # untuned reference models (RF, kernel ridge, SVR, multi-output SVR)
 │   │   ├── MOR_KRR_original.py
 │   │   ├── MOR_SVR_original.py
 │   │   ├── MORF_original.py
 │   │   └── MSVR_original.py
-│   ├── data/  # place data here (contents git-ignored)
-│   │   └── README.md
+│   ├── tuning/  # Optuna search (hyper-parameters, chain order) + SLURM scripts
+│   │   ├── MOR_LGBM_optimized.py
+│   │   ├── MOR_RF_optimized.py
+│   │   ├── MORF_optimized.py
+│   │   ├── RC_LGBM_ORDER.py
+│   │   ├── RC_RF_ORDER.py
+│   │   ├── run_MOR_LGBM_TUNE.sh
+│   │   ├── run_MOR_RF_TUNE.sh
+│   │   ├── run_RC_LGBM_ORDER.sh
+│   │   ├── run_RC_RF_ORDER.sh
+│   │   └── run_RF_TUNE.sh
 │   ├── feature_importance/  # one script per (method, learner, importance technique)
 │   │   ├── MOR_LGBM_feature_gain.py
 │   │   ├── MOR_LGBM_feature_split.py
@@ -158,39 +169,29 @@ TreeSHAP; models are named `LGBM_MOC`, `RF_CC`, `MLRF`, `LGBM_MOR`, `RF_RC`, `MO
 │   ├── notebooks/  # model performance and feature-importance heatmaps
 │   │   ├── feature_importance_heatmaps.ipynb
 │   │   └── model_performance.ipynb
-│   ├── results/  # tuned hyper-parameters and aggregate results
-│   │   ├── feature/  # feature-importance results
-│   │   │   ├── per_model/  # one table (all features) and one top-20 plot per model and technique
-│   │   │   │   ├── *.csv  # 15 tables
-│   │   │   │   └── *.png  # 16 figures
-│   │   │   └── summary/  # summary heatmaps across models
-│   │   │       └── *.png  # 5 figures
-│   │   ├── figures/  # model performance heatmaps
-│   │   │   └── *.png  # 2 figures
-│   │   ├── MOR/  # Multi-output Regressor: hyper-parameters (JSON)
-│   │   │   ├── LGBM_MOR_best_params.json
-│   │   │   ├── RF_best_params.json
-│   │   │   └── RF_MOR_best_params.json
-│   │   └── RC/  # Regressor Chain: hyper-parameters, chain order (JSON)
-│   │       ├── LGBM_RC_best_chain_order.json
-│   │       ├── LGBM_RC_best_params.json
-│   │       ├── RF_RC_best_chain_order.json
-│   │       └── RF_RC_best_params.json
-│   └── tuning/  # Optuna search (hyper-parameters, chain order) + SLURM scripts
-│       ├── MOR_LGBM_optimized.py
-│       ├── MOR_RF_optimized.py
-│       ├── MORF_optimized.py
-│       ├── RC_LGBM_ORDER.py
-│       ├── RC_RF_ORDER.py
-│       ├── run_MOR_LGBM_TUNE.sh
-│       ├── run_MOR_RF_TUNE.sh
-│       ├── run_RC_LGBM_ORDER.sh
-│       ├── run_RC_RF_ORDER.sh
-│       └── run_RF_TUNE.sh
-├── CITATION.cff
-├── LICENSE
+│   └── results/  # tuned hyper-parameters and aggregate results
+│       ├── MOR/  # Multi-output Regressor: hyper-parameters (JSON)
+│       │   ├── LGBM_MOR_best_params.json
+│       │   ├── RF_best_params.json
+│       │   └── RF_MOR_best_params.json
+│       ├── RC/  # Regressor Chain: hyper-parameters, chain order (JSON)
+│       │   ├── LGBM_RC_best_chain_order.json
+│       │   ├── LGBM_RC_best_params.json
+│       │   ├── RF_RC_best_chain_order.json
+│       │   └── RF_RC_best_params.json
+│       ├── feature/  # feature-importance results
+│       │   ├── per_model/  # one table (all features) and one top-20 plot per model and technique
+│       │   │   ├── *.csv  # 15 tables
+│       │   │   └── *.png  # 16 figures
+│       │   └── summary/  # summary heatmaps across models
+│       │       └── *.png  # 5 figures
+│       └── figures/  # model performance heatmaps
+│           └── *.png  # 2 figures
 ├── README.md
-└── requirements.txt
+├── requirements.txt
+├── LICENSE
+├── CITATION.cff
+└── .gitignore
 ```
 
 ## Setup
