@@ -1,0 +1,8 @@
+{
+  "n_estimators": 500,
+  "max_depth": 12,
+  "min_samples_split": 24,
+  "min_samples_leaf": 21,
+  "max_features": 0.41443182637246856,
+  "permutation_index": 27
+}

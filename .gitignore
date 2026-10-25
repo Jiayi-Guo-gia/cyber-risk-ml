@@ -1,0 +1,22 @@
+# ---- Data (never commit) ----
+classification/data/*
+regression/data/*
+!classification/data/README.md
+!regression/data/README.md
+*.csv.gz
+*.pkl
+*.pickle
+*.zip
+*.parquet
+*.xlsx
+
+# ---- Row-level model outputs ----
+**/results/residuals/
+
+# ---- Python / Jupyter / OS ----
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+.env
+.DS_Store

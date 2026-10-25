@@ -1,0 +1,13 @@
+{
+  "boosting_type": "dart",
+  "num_leaves": 160,
+  "max_depth": 16,
+  "learning_rate": 0.02122099754983612,
+  "n_estimators": 637,
+  "subsample": 1.0,
+  "colsample_bytree": 0.55,
+  "reg_alpha": 0.010495356075242403,
+  "reg_lambda": 0.00010422220867671541,
+  "min_child_samples": 77,
+  "permutation_index": 39
+}

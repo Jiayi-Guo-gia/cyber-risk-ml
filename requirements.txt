@@ -1,0 +1,12 @@
+# Versions the code was last run with are noted in comments; lower bounds are used for flexibility.
+numpy>=1.26          # 2.2.0
+pandas>=2.0          # 2.3.1
+scipy>=1.11          # 1.16.1
+scikit-learn>=1.4    # 1.7.1
+lightgbm>=4.0        # 4.6.0
+shap>=0.44           # 0.47.1
+optuna>=3.0          # hyper-parameter search (regression/notebooks/rf_hyperparameter_tuning.ipynb)
+matplotlib>=3.8      # 3.10.5
+seaborn>=0.13        # 0.13.2
+psutil>=5.9         # preprocessing/raw_cleaning/data_loader.py
+jupyterlab>=4.0      # to run the notebooks

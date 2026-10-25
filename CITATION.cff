@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the accompanying paper."
+title: "Entity-Specific Cyber Risk Assessment Using Insurtech-Empowered Risk Factors"
+authors:
+  - family-names: "Guo"
+    given-names: "Jiayi"
+  - family-names: "Zhang"
+    given-names: "Linfeng"
+  - family-names: "Quan"
+    given-names: "Zhiyu"
+license: MIT
+repository-code: "https://github.com/Jiayi-Guo-gia/cyber-risk-ml"
+preferred-citation:
+  type: article
+  title: "Entity-Specific Cyber Risk Assessment Using Insurtech-Empowered Risk Factors"
+  authors:
+    - family-names: "Guo"
+      given-names: "Jiayi"
+    - family-names: "Zhang"
+      given-names: "Linfeng"
+    - family-names: "Quan"
+      given-names: "Zhiyu"
+  journal: "Variance"
+  volume: 19
+  year: 2026
+  doi: "10.66573/001c.155715"
