@@ -157,11 +157,10 @@ TreeSHAP; models are named `LGBM_MOC`, `RF_CC`, `MLRF`, `LGBM_MOR`, `RF_RC`, `MO
 │   │   ├── RC_RF_feature_impurity.py
 │   │   ├── RC_RF_permutation.py
 │   │   └── RC_RF_shap.py
-│   ├── notebooks/  # model performance, importance heatmaps, residual analysis, RF tuning
+│   ├── notebooks/  # model performance, importance heatmaps, residual analysis
 │   │   ├── feature_importance_heatmaps.ipynb
 │   │   ├── model_performance.ipynb
-│   │   ├── residual_analysis.ipynb
-│   │   └── rf_hyperparameter_tuning.ipynb
+│   │   └── residual_analysis.ipynb
 │   ├── results/  # tuned hyper-parameters and aggregate results
 │   │   ├── feature/  # top-20 feature-importance tables (CSV) and plots (PNG)
 │   │   │   ├── gain/  # LightGBM gain importance
