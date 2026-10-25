@@ -26,9 +26,6 @@ which entity-specific features drive the predictions and whether incident types 
 | InsurTech data (proprietary) | 527 entity-level features for 31,782 companies: business identity (geography, enterprise structure, industry classification, licensing, disclosed risk characteristics) and operational signals (operating status, open hours, shareholding, customer reviews, firmographics) |
 | Merged dataset | 39,636 firm-year observations, joined on `COMPANY_ID`; `d = 528` features (527 InsurTech features + `ACCIDENT_YEAR`), `q = 5` incident types |
 
-The scripts here operate on the merged InsurTech-enriched dataset (denoted D2 in the paper). Performance
-comparisons against conventional features (D1) appear only in the model-performance notebooks.
-
 ## Modeling framework
 
 Base learners are Random Forest and LightGBM (scikit-learn / LightGBM implementations). Label-specific decision
