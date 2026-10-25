@@ -11,7 +11,7 @@ models for organization-level cyber risk assessment. For each firm-year, we mode
 - **incident frequency** as a multi-output regression problem,
 
 over five incident types (`Data Breach`, `Privacy Violation`, `Extortion/Fraud`, `IT Error`, `Other`), and examine
-which entity-specific features drive the predictions and whether incident types are dependent at the entity level.
+which entity-specific features drive the predictions.
 
 > **The data are not publicly available.** The entity-level features come from a proprietary InsurTech platform
 > and cannot be redistributed, and the merged firm-year dataset is derived from them. This repository therefore
@@ -49,9 +49,6 @@ Regression: average MSE (aMSE), average RMSE (aRMSE), average correlation coeffi
 MSE-based impurity for regression forests), permutation importance (ROC-AUC for classification, MSE for regression),
 and TreeSHAP: 20 model–method combinations for classification and 15 for regression.
 
-**Dependence structure.** The residual-analysis notebooks compute partial correlations between the residuals of
-the different incident types to assess conditional dependence at the entity level.
-
 Script names follow `<METHOD>_<LEARNER>_<IMPORTANCE>.py`, e.g. `CC_RF_shap.py` = Classifier Chain + Random Forest +
 TreeSHAP; models are named `LGBM_MOC`, `RF_CC`, `MLRF`, `LGBM_MOR`, `RF_RC`, `MORF`, etc.
 
@@ -88,10 +85,9 @@ TreeSHAP; models are named `LGBM_MOC`, `RF_CC`, `MLRF`, `LGBM_MOR`, `RF_RC`, `MO
 │   │   ├── MOC_RF_feature_gini.py
 │   │   ├── MOC_RF_permutation.py
 │   │   └── MOC_RF_shap.py
-│   ├── notebooks/  # model performance, importance heatmaps, residual analysis
+│   ├── notebooks/  # model performance and feature-importance heatmaps
 │   │   ├── feature_importance_heatmaps.ipynb
-│   │   ├── model_performance.ipynb
-│   │   └── residual_analysis.ipynb
+│   │   └── model_performance.ipynb
 │   ├── results/  # tuned hyper-parameters and aggregate results
 │   │   ├── CC/  # Classifier Chain: hyper-parameters, label order, thresholds (JSON)
 │   │   │   ├── LGBM_CC_best_chain_order.json
@@ -157,11 +153,9 @@ TreeSHAP; models are named `LGBM_MOC`, `RF_CC`, `MLRF`, `LGBM_MOR`, `RF_RC`, `MO
 │   │   ├── RC_RF_feature_impurity.py
 │   │   ├── RC_RF_permutation.py
 │   │   └── RC_RF_shap.py
-│   ├── notebooks/  # model performance, importance heatmaps, residual analysis, RF tuning
+│   ├── notebooks/  # model performance and feature-importance heatmaps
 │   │   ├── feature_importance_heatmaps.ipynb
-│   │   ├── model_performance.ipynb
-│   │   ├── residual_analysis.ipynb
-│   │   └── rf_hyperparameter_tuning.ipynb
+│   │   └── model_performance.ipynb
 │   ├── results/  # tuned hyper-parameters and aggregate results
 │   │   ├── feature/  # top-20 feature-importance tables (CSV) and plots (PNG)
 │   │   │   ├── gain/  # LightGBM gain importance
