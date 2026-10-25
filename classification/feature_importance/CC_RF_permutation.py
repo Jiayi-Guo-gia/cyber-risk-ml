@@ -37,8 +37,8 @@ CONFIG = {
     
     # Output configuration (changed paths)
     "output": {
-        "feature_importance": "results/feature/RF_CC_permutation_importance.csv",
-        "visualization": "results/feature/RF_CC_permutation_plot.png"
+        "feature_importance": "results/feature/per_model/RF_CC_permutation_importance.csv",
+        "visualization": "results/feature/per_model/RF_CC_permutation_top20.png"
     },
     
     # Computational parameters (replaced shap_params with permutation_params)

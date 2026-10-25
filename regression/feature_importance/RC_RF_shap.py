@@ -16,8 +16,8 @@ CONFIG = {
         "y_train": "data/Y_train.csv"
     },
     "output": {
-        "feature_importance": "results/feature/RF_RC_top20_features_shap.csv",
-        "plot": "results/feature/RF_RC_feature_importance_plot_shap.png"
+        "feature_importance": "results/feature/per_model/RF_RC_shap_importance.csv",
+        "plot": "results/feature/per_model/RF_RC_shap_top20.png"
     },
     "label_order": [1, 0, 3, 4, 2],  # Desired modeling order
     "random_state": 42,

@@ -13,8 +13,8 @@ CONFIG = {
         "y_train": "data/Y_train.csv"
     },
     "output": {
-        "feature_importance": "results/feature/MLRF_top20_features_entropy.csv",
-        "plot": "results/feature/MLRF_feature_importance_plot_entropy.png"
+        "feature_importance": "results/feature/per_model/MLRF_entropy_importance.csv",
+        "plot": "results/feature/per_model/MLRF_entropy_top20.png"
     }
 }
 

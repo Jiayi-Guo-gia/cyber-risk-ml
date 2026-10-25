@@ -13,8 +13,8 @@ CONFIG = {
         "y_train": "data/Y_train.csv"
     },
     "output": {
-        "feature_importance": "results/feature/MORF_top20_features_impurity.csv",
-        "plot": "results/feature/MORF_feature_importance_plot_impurity.png"
+        "feature_importance": "results/feature/per_model/MORF_impurity_importance.csv",
+        "plot": "results/feature/per_model/MORF_impurity_top20.png"
     },
     "random_state": 42
 }

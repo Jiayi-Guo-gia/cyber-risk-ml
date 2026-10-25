@@ -20,8 +20,8 @@ CONFIG = {
         "y_train": "data/y_train.csv"  # Single output target
     },
     "output": {
-        "feature_importance": "results/feature/MORF_top20_features_permutation.csv",
-        "plot": "results/feature/MORF_feature_importance_plot_permutation.png"
+        "feature_importance": "results/feature/per_model/MORF_permutation_importance.csv",
+        "plot": "results/feature/per_model/MORF_permutation_top20.png"
     },
     "permutation_params": {
         "sampling": {

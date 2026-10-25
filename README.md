@@ -95,11 +95,14 @@ TreeSHAP; models are named `LGBM_MOC`, `RF_CC`, `MLRF`, `LGBM_MOR`, `RF_RC`, `MO
 │   │   │   ├── RF_CC_best_chain_order.json
 │   │   │   ├── RF_CC_best_model_params.json
 │   │   │   └── RF_CC_best_thresholds.json
-│   │   ├── feature/  # top-20 feature-importance tables (CSV) and plots (PNG)
-│   │   │   ├── *.csv  # 20 tables
-│   │   │   └── *.png  # 29 figures
-│   │   ├── figures/  # performance heatmaps
-│   │   │   └── *.png  # 2 figures
+│   │   ├── feature/  # feature-importance results
+│   │   │   ├── per_model/  # one table (all features) and one top-20 plot per model and technique
+│   │   │   │   ├── *.csv  # 20 tables
+│   │   │   │   └── *.png  # 20 figures
+│   │   │   └── summary/  # summary heatmaps across models
+│   │   │       └── *.png  # 6 figures
+│   │   ├── figures/  # model performance heatmaps
+│   │   │   └── *.png  # 5 figures
 │   │   └── MOC/  # Binary Relevance: hyper-parameters, thresholds (JSON)
 │   │       ├── LGBM_MOC_best_model_params.json
 │   │       ├── LGBM_MOC_best_thresholds.json
@@ -156,12 +159,14 @@ TreeSHAP; models are named `LGBM_MOC`, `RF_CC`, `MLRF`, `LGBM_MOR`, `RF_RC`, `MO
 │   │   ├── feature_importance_heatmaps.ipynb
 │   │   └── model_performance.ipynb
 │   ├── results/  # tuned hyper-parameters and aggregate results
-│   │   ├── feature/  # top-20 feature-importance tables (CSV) and plots (PNG)
-│   │   │   ├── gain/  # LightGBM gain importance
-│   │   │   │   ├── *.csv  # 2 tables
-│   │   │   │   └── *.png  # 2 figures
-│   │   │   ├── *.csv  # 15 tables
-│   │   │   └── *.png  # 24 figures
+│   │   ├── feature/  # feature-importance results
+│   │   │   ├── per_model/  # one table (all features) and one top-20 plot per model and technique
+│   │   │   │   ├── *.csv  # 15 tables
+│   │   │   │   └── *.png  # 16 figures
+│   │   │   └── summary/  # summary heatmaps across models
+│   │   │       └── *.png  # 5 figures
+│   │   ├── figures/  # model performance heatmaps
+│   │   │   └── *.png  # 2 figures
 │   │   ├── MOR/  # Multi-output Regressor: hyper-parameters (JSON)
 │   │   │   ├── LGBM_MOR_best_params.json
 │   │   │   ├── RF_best_params.json
@@ -224,16 +229,18 @@ cd ../regression
 python tuning/MOR_LGBM_optimized.py  # also: MOR_RF_optimized, MORF_optimized, RC_LGBM_ORDER, RC_RF_ORDER
 ```
 
-Each script writes best parameters, metrics, predictions and the Optuna study database under `results/`.
+Each tuning script writes best parameters, metrics, predictions and the Optuna study database under `results/`
+(MOC and MLRF: `results/MOC`; CC and RC chain models: `results/ORDER`; MOR and MORF: `results/LGBM` or `results/RF`).
 The tuned parameters used in the paper are provided in `results/{CC,MOC}` (classification) and `results/{MOR,RC}`
-(regression); the regression tuning scripts write to `results/{LGBM,RF,ORDER}`, so copy their JSON files into
-`results/{MOR,RC}` (names as in the provided files) before running the feature-importance scripts on a re-tuned model.
+(regression). To use re-tuned parameters, copy the JSON files into those folders (names as in the provided files).
+The chain-model importance scripts (`CC_*`, `RC_*`) hard-code the chain order in their `CONFIG`; update it if you
+re-tune the order (it is stored in the corresponding `*_best_chain_order.json`).
 
 **3. Feature importance** (run from the *task* directory; paths in the scripts are relative to it)
 
 ```bash
 cd classification
-python feature_importance/CC_RF_shap.py            # writes results/feature/RF_CC_shap_importance.csv + plot
+python feature_importance/CC_RF_shap.py            # writes results/feature/per_model/RF_CC_shap_importance.csv + RF_CC_shap_top20.png
 python feature_importance/MOC_LGBM_permutation.py
 ```
 
@@ -241,8 +248,15 @@ Available techniques per learner — LightGBM: `feature_gain`, `feature_split`, 
 Random Forest: `feature_gini`/`feature_entropy` (classification) or `feature_impurity` (regression), `shap`, `permutation`.
 Hyper-parameters are read from `results/<METHOD>/*.json`.
 
+Outputs in `results/feature/per_model/` follow `<MODEL>_<technique>_importance.csv` (all features, ranked) and
+`<MODEL>_<technique>_top20.png` (top-20 plot), with `<MODEL>` in `LGBM_MOC`, `RF_MOC`, `LGBM_CC`, `RF_CC`, `MLRF`
+(classification) or `LGBM_MOR`, `RF_MOR`, `LGBM_RC`, `RF_RC`, `MORF` (regression) and `<technique>` in `gain`,
+`split`, `gini`, `entropy`, `impurity`, `shap`, `permutation`.
+
 **4. Figures and tables** — open the notebooks in `*/notebooks/` with Jupyter started from the task directory
 (`cd classification && jupyter lab`), since they read `results/` and `data/` via relative paths.
+`feature_importance_heatmaps.ipynb` reads `results/feature/per_model/*.csv` and writes the summary heatmaps to
+`results/feature/summary/`; `model_performance.ipynb` writes the performance heatmaps to `results/figures/`.
 
 ## Citation
 

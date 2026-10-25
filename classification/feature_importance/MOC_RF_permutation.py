@@ -40,8 +40,8 @@ CONFIG = {
     
     # Output configuration
     "output": {
-        "feature_importance": "results/feature/RF_MOC_permutation_importance.csv",
-        "visualization": "results/feature/RF_MOC_permutation_plot.png"
+        "feature_importance": "results/feature/per_model/RF_MOC_permutation_importance.csv",
+        "visualization": "results/feature/per_model/RF_MOC_permutation_top20.png"
     },
     
     # Computational parameters

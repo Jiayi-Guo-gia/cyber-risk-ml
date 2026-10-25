@@ -35,8 +35,8 @@ CONFIG = {
     
     # Output configuration
     "output": {
-        "feature_importance": "results/feature/RF_CC_shap_importance.csv",
-        "visualization": "results/feature/RF_CC_shap_plot.png"
+        "feature_importance": "results/feature/per_model/RF_CC_shap_importance.csv",
+        "visualization": "results/feature/per_model/RF_CC_shap_top20.png"
     },
     
     # Computational parameters

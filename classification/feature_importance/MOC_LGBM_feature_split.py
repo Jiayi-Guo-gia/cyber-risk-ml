@@ -14,8 +14,8 @@ CONFIG = {
         "y_train": "data/Y_train.csv"
     },
     "output": {
-        "feature_importance": "results/feature/LGBM_MOC_top20_features_split.csv",
-        "plot": "results/feature/LGBM_MOC_feature_importance_plot_split.png"
+        "feature_importance": "results/feature/per_model/LGBM_MOC_split_importance.csv",
+        "plot": "results/feature/per_model/LGBM_MOC_split_top20.png"
     }
 }
 

@@ -18,8 +18,8 @@ CONFIG = {
         "y_train": "data/Y_train.csv"
     },
     "output": {
-        "feature_importance": "results/feature/LGBM_MOR_top20_features_permutation.csv",
-        "plot": "results/feature/LGBM_MOR_feature_importance_plot_permutation.png"
+        "feature_importance": "results/feature/per_model/LGBM_MOR_permutation_importance.csv",
+        "plot": "results/feature/per_model/LGBM_MOR_permutation_top20.png"
     },
     "permutation_params": {
         "sampling": {

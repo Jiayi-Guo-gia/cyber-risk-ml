@@ -14,8 +14,8 @@ CONFIG = {
         "y_train": "data/Y_train.csv"
     },
     "output": {
-        "feature_importance": "results/feature/RF_MOR_top20_features_impurity.csv",
-        "plot": "results/feature/RF_MOR_feature_importance_plot_impurity.png"
+        "feature_importance": "results/feature/per_model/RF_MOR_impurity_importance.csv",
+        "plot": "results/feature/per_model/RF_MOR_impurity_top20.png"
     },
     "random_state": 42
 }

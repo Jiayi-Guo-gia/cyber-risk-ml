@@ -35,8 +35,8 @@ CONFIG = {
     
     # Output configuration
     "output": {
-        "feature_importance": "results/feature/LGBM_CC_permutation_importance.csv",
-        "visualization": "results/feature/LGBM_CC_permutation_plot.png"
+        "feature_importance": "results/feature/per_model/LGBM_CC_permutation_importance.csv",
+        "visualization": "results/feature/per_model/LGBM_CC_permutation_top20.png"
     },
     
     # Computational parameters

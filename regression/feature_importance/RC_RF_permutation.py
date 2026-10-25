@@ -17,8 +17,8 @@ CONFIG = {
         "y_train": "data/Y_train.csv"
     },
     "output": {
-        "feature_importance": "results/feature/RF_RC_top20_features_permutation.csv",
-        "plot": "results/feature/RF_RC_feature_importance_plot_permutation.png"
+        "feature_importance": "results/feature/per_model/RF_RC_permutation_importance.csv",
+        "plot": "results/feature/per_model/RF_RC_permutation_top20.png"
     },
     "label_order": [1, 0, 3, 4, 2],
     "permutation_params": {

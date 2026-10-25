@@ -14,8 +14,8 @@ CONFIG = {
         "y_train": "data/Y_train.csv"
     },
     "output": {
-        "feature_importance": "results/feature/RF_RC_top20_features_impurity.csv",
-        "plot": "results/feature/RF_RC_feature_importance_plot_impurity.png"
+        "feature_importance": "results/feature/per_model/RF_RC_impurity_importance.csv",
+        "plot": "results/feature/per_model/RF_RC_impurity_top20.png"
     },
     "label_order": [1, 0, 3, 4, 2],  # Desired modeling order
     "random_state": 42

@@ -22,8 +22,8 @@ CONFIG = {
     ],
     
     "output": {
-        "feature_importance": "results/feature/LGBM_CC_top20_features_gain.csv",
-        "plot": "results/feature/LGBM_CC_feature_importance_plot_gain.png"
+        "feature_importance": "results/feature/per_model/LGBM_CC_gain_importance.csv",
+        "plot": "results/feature/per_model/LGBM_CC_gain_top20.png"
     },
     "random_state": 42
 }

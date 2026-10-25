@@ -86,9 +86,10 @@ def main():
     # Second pass (4 columns)
     print("\nSecond deduplication pass (4 columns)...")
     cols_4 = ['COMPANY_ID', 'CASE_TYPE_LG', 'ACCIDENT_YEAR', 'TOTAL_AMOUNT']
+    n_before = len(label_dedup)
     label_dedup = label_dedup.drop_duplicates(subset=cols_4, keep='first')
     print(f"Records after second pass: {len(label_dedup)} "
-          f"(Reduced by {label_dedup.shape[0]-len(label_dedup)})")
+          f"(Reduced by {n_before - len(label_dedup)})")
 
     # Phase 6: Temporal analysis
     print("\n>>> PHASE 6: TEMPORAL ANALYSIS")
@@ -100,7 +101,9 @@ def main():
     year_dist.plot(kind='bar', title='Claim Distribution by Year')
     plt.xlabel('Accident Year')
     plt.ylabel('Claim Count')
-    plt.show()
+    plt.tight_layout()
+    plt.savefig('classification/data/claims_by_year.png', dpi=150)
+    plt.close()
 
     # Phase 7: Feature encoding
     print("\n>>> PHASE 7: FEATURE ENCODING")

@@ -35,8 +35,8 @@ CONFIG = {
     
     # Output configuration
     "output": {
-        "feature_importance": "results/feature/LGBM_MOC_shap_importance.csv",  # Updated path for LGBM
-        "visualization": "results/feature/LGBM_MOC_shap_plot.png"  # Updated path for LGBM
+        "feature_importance": "results/feature/per_model/LGBM_MOC_shap_importance.csv",  # Updated path for LGBM
+        "visualization": "results/feature/per_model/LGBM_MOC_shap_top20.png"  # Updated path for LGBM
     },
     
     # Computational parameters

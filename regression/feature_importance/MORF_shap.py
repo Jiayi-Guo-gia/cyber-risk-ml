@@ -16,8 +16,8 @@ CONFIG = {
         "y_train": "data/Y_train.csv"
     },
     "output": {
-        "feature_importance": "results/feature/MORF_top20_features_shap.csv",
-        "plot": "results/feature/MORF_top20_feature_importance_plot_shap.png"
+        "feature_importance": "results/feature/per_model/MORF_shap_importance.csv",
+        "plot": "results/feature/per_model/MORF_shap_top20.png"
     },
     "shap_params": {
         "sampling": {

@@ -32,8 +32,8 @@ CONFIG = {
     
     # Output configuration
     "output": {
-        "feature_importance": "results/feature/LGBM_CC_shap_importance.csv",
-        "visualization": "results/feature/LGBM_CC_shap_plot.png"
+        "feature_importance": "results/feature/per_model/LGBM_CC_shap_importance.csv",
+        "visualization": "results/feature/per_model/LGBM_CC_shap_top20.png"
     },
     
     # Computational parameters

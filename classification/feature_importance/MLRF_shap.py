@@ -34,9 +34,8 @@ CONFIG = {
     
     # Output configuration
     "output": {
-        "feature_importance": "results/feature/MLRF_top20_shap_importance.csv",
-        "label_importance": "results/feature/MLRF_label_shap_importance.csv",
-        "visualization": "results/feature/MLRF_top20_shap_plot.png"
+        "feature_importance": "results/feature/per_model/MLRF_shap_importance.csv",
+        "visualization": "results/feature/per_model/MLRF_shap_top20.png"
     },
     
     # Computational parameters

@@ -14,8 +14,8 @@ CONFIG = {
         "y_train": "data/Y_train.csv"
     },
     "output": {
-        "feature_importance": "results/feature/MLRF_top20_features_gini.csv",
-        "plot": "results/feature/MLRF_top20_feature_importance_plot_gini.png"
+        "feature_importance": "results/feature/per_model/MLRF_gini_importance.csv",
+        "plot": "results/feature/per_model/MLRF_gini_top20.png"
     }
 }
 

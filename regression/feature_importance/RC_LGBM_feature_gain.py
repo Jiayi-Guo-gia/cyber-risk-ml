@@ -14,8 +14,8 @@ CONFIG = {
         "y_train": "data/Y_train.csv"
     },
     "output": {
-        "feature_importance": "results/feature/LGBM_RC_top20_features_gain.csv",
-        "plot": "results/feature/LGBM_RC_feature_importance_plot_gain.png"
+        "feature_importance": "results/feature/per_model/LGBM_RC_gain_importance.csv",
+        "plot": "results/feature/per_model/LGBM_RC_gain_top20.png"
     },
     "label_order": [1, 3, 2, 4, 0],
     "random_state": 42

@@ -14,8 +14,8 @@ CONFIG = {
         "y_train": "data/Y_train.csv"
     },
     "output": {
-        "feature_importance": "results/feature/RF_MOC_top20_features_entropy.csv",
-        "plot": "results/feature/RF_MOC_feature_importance_plot_entropy.png"
+        "feature_importance": "results/feature/per_model/RF_MOC_entropy_importance.csv",
+        "plot": "results/feature/per_model/RF_MOC_entropy_top20.png"
     }
 }
 

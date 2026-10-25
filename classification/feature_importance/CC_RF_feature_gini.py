@@ -21,8 +21,8 @@ CONFIG = {
         'Data Breach',
     ],
     "output": {
-        "feature_importance": "results/feature/RF_CC_top20_features_gini.csv",
-        "plot": "results/feature/RF_CC_feature_importance_plot_gini.png"
+        "feature_importance": "results/feature/per_model/RF_CC_gini_importance.csv",
+        "plot": "results/feature/per_model/RF_CC_gini_top20.png"
     },
     "random_state": 42
 }

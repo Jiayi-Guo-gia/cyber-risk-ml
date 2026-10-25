@@ -18,8 +18,8 @@ CONFIG = {
         "y_train": "data/Y_train.csv"
     },
     "output": {
-        "feature_importance": "results/feature/LGBM_MOR_top20_features_shap.csv",
-        "plot": "results/feature/LGBM_MOR_feature_importance_plot_shap.png"
+        "feature_importance": "results/feature/per_model/LGBM_MOR_shap_importance.csv",
+        "plot": "results/feature/per_model/LGBM_MOR_shap_top20.png"
     },
     "shap_params": {
         "sampling": {
